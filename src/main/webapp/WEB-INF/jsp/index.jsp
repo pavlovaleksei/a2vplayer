@@ -12,6 +12,7 @@
     <title>a2v-player</title>
 </head>
 <body>
-
+    <h1 style="text-align: center; color: chocolate">a2v-player</h1>
+    <h7 style="color: whitesmoke; text-align: center"><i>Плеер для просмотра видео по сети LAN</i></h7>
 </body>
 </html>

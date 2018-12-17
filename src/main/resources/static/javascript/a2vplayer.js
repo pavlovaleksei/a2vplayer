@@ -1,20 +1,17 @@
-let me = this;
 (function loadMedias() {
-    me.getFiles();
+    this.getFiles();
 })();
 
 function addMediaInPlayList(media) {
     media.map(v => {
-        v.files.map(rec => {
-            let div = document.createElement('div');
-            div.className = 'container';
-            div.innerHTML = '<video class="container" controls data-plur-config=\'{"title": "This is an example video", "volume": 1, "debug": true }\'>' +
-                '<source src="/video-mp4?path=' + rec + '"type="video/mp4"/>' +
-                '<source src="/video-webm?path=' + rec + '"type="video/webm"/>' +
-                '<source src="/video-ogg?path=' + rec + '"type="video/ogg"/>' +
-                '</video>' + '<span style="color: whitesmoke">'  + rec + '</span>'
-            document.body.insertBefore(div, document.body.firstChild);
-        })
+        let div = document.createElement('div');
+        div.className = 'container';
+        div.innerHTML = '<video class="container" controls data-plur-config=\'{"title": "This is an example video", "volume": 1, "debug": true }\'>' +
+            '<source src="/video-mp4?path=' + v.path + '"type="video/mp4"/>' +
+            '<source src="/video-webm?path=' + v.path + '"type="video/webm"/>' +
+            '<source src="/video-ogg?path=' + v.path + '"type="video/ogg"/>' +
+            '</video>' + '<span style="color: whitesmoke">'  + v.name + '</span>'
+        document.body.insertBefore(div, document.body.lastChild);
     })
 }
 
@@ -25,7 +22,7 @@ function getFiles() {
         })
         .then(resp => {
             console.log(resp)
-            me.addMediaInPlayList(resp);
+            this.addMediaInPlayList(resp);
         })
         .catch(console.error)
 };

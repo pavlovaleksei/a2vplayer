@@ -1,6 +1,5 @@
 package com.cotrollers;
 
-import com.Models.Media_model;
 import com.repository.MediaRepository;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.ui.Model;
@@ -16,19 +15,10 @@ import java.util.List;
 @RestController
 public class PlayerController {
 
-    private final static File video = new File("/player/test4.mp4");
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index(Model model) {
         return new ModelAndView("index");
     }
-
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test2() {
-        System.out.println("test");
-        return "test from back";
-    }
-
 
     @RequestMapping(value = "/video-mp4", produces = "video/mp4")
     public FileSystemResource playerMP4(@RequestParam("path") String path) {
@@ -37,7 +27,6 @@ public class PlayerController {
 
         File file = new File("");
         System.out.println(file.getAbsolutePath());
-
         return new FileSystemResource(path);
     }
 
@@ -54,10 +43,8 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "/media", method = RequestMethod.GET)
-    public List<Media_model> getMedias() {
-        System.out.println("Medias controller");
+    public List<Object> getMedias() {
         MediaRepository repository = new MediaRepository();
-        return repository.getListMedia(new File("").getAbsolutePath() + "/player/");
+        return repository.getMedias(new File("").getAbsolutePath() + "/player/");
     }
-
 }

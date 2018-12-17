@@ -1,43 +1,16 @@
 package com.repository;
 
-import com.Models.Media_model;
+import com.Models.Media;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class MediaRepository {
 
-    public List<Media_model> getListMedia(String dir) {
-        File playerDirectory = new File(dir);
-
-        List<Media_model> fileList = new ArrayList<>();
-        List<Media_model> subdirFileList = new ArrayList<>();
-        List<Media_model> returnList = new ArrayList<>();
-
-        fileList.add(new Media_model(dir,
-                Arrays.asList(Objects.requireNonNull(playerDirectory.listFiles())),
-                Arrays.asList(Objects.requireNonNull(playerDirectory.list())))
-        );
-        fileList.forEach(v -> {
-            v.getFiles().forEach(sv -> {
-                if (sv.isDirectory()) {
-                    System.out.println("sv is directory");
-                    subdirFileList.add(new Media_model(sv.getAbsolutePath(),
-                            Arrays.asList(Objects.requireNonNull(sv.listFiles())),
-                            Arrays.asList(Objects.requireNonNull(sv.list())))
-                    );
-                }
-            });
-        });
-
-        returnList.addAll(fileList);
-//        returnList.addAll(subdirFileList);
-
-        return returnList;
+    public List<Object> getMedias(String dir) {
+        List<Object> result = new ArrayList<>();
+        List<File> files = Arrays.asList(Objects.requireNonNull(new File(dir).listFiles()));
+        files.forEach(v -> result.add(new Media(v.getName(), v.getPath())));
+        return result;
     }
-
-
 }
