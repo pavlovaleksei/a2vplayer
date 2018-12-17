@@ -1,0 +1,19 @@
+body {
+    /*background-color: lightblue;*/
+    background-image: url("/background.jpg");
+}
+
+.container {
+    max-width: 400px;
+    border-radius: 4px;
+    padding: 2px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+}
+.plyr {
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+.player {
+    width: 120px
+
+}
